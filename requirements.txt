@@ -1,3 +1,4 @@
 climage
 colored
+inquirer
 emoji
