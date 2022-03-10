@@ -17,23 +17,27 @@ class Player:
         print()
         print("My Bag")
         for item in self.bag:
-            print(item.name)
-    
+            print(item.name, end='')
+        print()
+
+    # def see_my_pokemon(self):
+    #     print()
+    #     print("My Pokemon")
+    #     for pokemon in self.pokemon_list:
+    #         print(pokemon, end='')
+    #     print()
 
     def see_my_pokemon(self):
         print()
         print("My Pokemon")
         for pokemon in self.pokemon_list:
-            print(pokemon, end='')
-    
-    def see_my_pokemon_will_be_used(self):
+            print(pokemon.pokemon_display)
+            print("Name: ", pokemon.name, " Nature: ", pokemon.nature)
         print()
-        print("My Pokemon")
-        for pokemon in self.pokemon_list:
-            print(pokemon.name, end='')
     
     def print_nature(self):
         print()
         print("My Nature")
         for row in self.nature:
-            print(row, end='')
+            print(row, end=' ')
+        print()

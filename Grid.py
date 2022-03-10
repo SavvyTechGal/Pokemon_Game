@@ -35,13 +35,6 @@ class Grid:
         
         #init player
         self.my_player = functions.new_game_setup()
-
-        #For testing only... turn these into menu options
-        print("Welcome:", self.my_player.name)
-        self.my_player.print_nature()
-        self.my_player.open_bag()
-        self.my_player.see_my_pokemon()
-        
         
         #init required map items
         #found in forest
@@ -66,6 +59,13 @@ class Grid:
         desert_terrain = Terrain("Amon Desert Ruins", bg('#32a852'), climage.convert('terrain_images/sand.png', is_unicode=True, width=3).rstrip(), True, desert_cloak)
         cherry_terrain = Terrain("Cherry Blossom Forest", bg('#32a852'), climage.convert('terrain_images/cherry.png', is_unicode=True, width=3).rstrip(), False)
         
+        #initialize pokemon
+
+        
+
+
+
+
         #home/start grid 
         for i in range(10):
             for j in range(10,20):
@@ -76,7 +76,7 @@ class Grid:
                     self.grid[i][j].player = self.my_player 
                     self.my_player.location_x = j
                     self.my_player.location_y = i
-        
+
         #forest grid
         i_place = random.randint(0, 9)
         j_place = random.randint(20, 29)
