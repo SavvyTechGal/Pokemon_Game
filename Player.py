@@ -29,15 +29,15 @@ class Player:
 
     def see_my_pokemon(self):
         print()
-        print("My Pokemon")
+        print(f"{self.name}'s Pokemon")
         for pokemon in self.pokemon_list:
-            print(pokemon.pokemon_display)
-            print("Name: ", pokemon.name, " Nature: ", pokemon.nature)
+            print(f"Pokemon: {pokemon.name} Nature: {pokemon.nature}")
+            print(pokemon.pokemon_display) 
         print()
     
-    def print_nature(self):
-        print()
-        print("My Nature")
+    def print_player_details(self):
+        print(f"My Name: {self.name} Gender: {self.gender} Money: {self.money}")
+        print("My Nature: ")
         for row in self.nature:
-            print(row, end=' ')
+            print(f"{row}", end='')
         print()

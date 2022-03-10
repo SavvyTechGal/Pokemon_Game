@@ -49,8 +49,6 @@ punch = Attack('Punch', 'martial_arts', 5)
 #martial_arts_kick
 kick = Attack('Kick', 'martial_arts', 5)
 
-
-
 #starter pokemon (4)
 bulbasaur = Pokemon("Bulbasaur", "Male", "Grass", [nature_2, kick, grass_special_1], "Grass", "Fire", 50, '\P/', climage.convert('pokemon_images/starter/bulbasaur.png', is_unicode=True, width=30))
 fennekin = Pokemon("Fennekin", "Female", "Fire", [fire_2, kick, fire_special_2], "Fire", "Water", 50, '\P/', climage.convert('pokemon_images/starter/fennekin.png', is_unicode=True, width=30))
@@ -91,4 +89,6 @@ fire_list = [flareon, fletchinder, ponyta, slugma]
 
 earth_list = [cubone, diglett, mudsdale, sandshrew]
 
-air_list = [butterfree, pidgey, spearow, tornadus]
+wind_list = [butterfree, pidgey, spearow, tornadus]
+
+pokemon_array = [starter_list, water_list, fire_list, earth_list, wind_list]
