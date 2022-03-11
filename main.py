@@ -1,6 +1,3 @@
-# from ast import walk
-import emoji
-
 from Grid import Grid
 
 

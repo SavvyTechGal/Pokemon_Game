@@ -1,6 +1,7 @@
 from Pokemon import Pokemon
 import pokemon_db
 import random
+import copy
 class CPU_Trainer:
     def __init__(self, name: str, gender: str, nature: str, fun_fact: str, img, special_pokemon = None):
         self.name = name
@@ -15,7 +16,7 @@ class CPU_Trainer:
         for i in range(self.number_of_pokemon):
             while last_pokemon_type == pokemon_type:
                 pokemon_type = random.choice(pokemon_db.pokemon_array)
-            self.pokemon_list.append(random.choice(pokemon_type))
+            self.pokemon_list.append(copy.deepcopy(random.choice(pokemon_type)))
             last_pokemon_type = pokemon_type
         self.pokemon_to_win = random.choice(self.pokemon_list)
         self.money_to_win = random.choice(range(20, 150))

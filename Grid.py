@@ -2,11 +2,13 @@ import functions
 from Item import Item
 from CPU_Trainer import CPU_Trainer
 import pokemon_db
+import copy
 import inquirer
 from inquirer.themes import GreenPassion
 import random
 import climage
 from colored import fg, bg, attr #to make text/bg a specifc color 
+import numpy as np
 
 class Terrain:
     def __init__(self, type: str, color, img, needs_item_to_move: bool, required_item: Item = None):
@@ -56,7 +58,7 @@ class Grid:
         desert_cloak = Item("Desert Cloak", climage.convert('item_images/desert_cloak.png', is_unicode=True, width=3).rstrip(), "Heat-Resistant Desert Cloak, Allows you to travel the desert at a comfortable temperature!")
         
         #hearts -> heals a fallen pokemon to full health
-        heart = Item("Heart", ' \u2764\ufe0f ', 'Heals a fallen pokemon to full health. Can be used in battle or from bag in world.')
+        heart = Item("Heart", ' \u2764\ufe0f ', 'Heals a pokemon and increases Health by +50. Can only be used in battle. One time use only.')
         
 
         #required terrain tiles
@@ -109,7 +111,7 @@ class Grid:
         #place mountain trainer -> win mountain pokemon 
         i_cpu, j_cpu = functions.initialize_cpu_trainers(0, 9, 0, 9, self.grid)
         self.grid[i_cpu][j_cpu].is_trainer_on_tile = True
-        self.grid[i_cpu][j_cpu].trainer = CPU_Trainer('Ruth', 'Female', 'Brave, Tough', 'Can move Mountains if I try!', '\T/', random.choice(pokemon_db.earth_list))
+        self.grid[i_cpu][j_cpu].trainer = CPU_Trainer('Ruth', 'Female', 'Brave, Tough', 'Can move Mountains if I try!', '\T/', copy.deepcopy(random.choice(pokemon_db.earth_list)))
         self.grid[i_cpu][j_cpu].trainer.see_my_pokemon()
         self.grid[i_cpu][j_cpu].trainer.print_trainer_details()
         
@@ -120,13 +122,13 @@ class Grid:
         #place  a fewrandom common trainer -> win a starter pokemon
         i_cpu, j_cpu = functions.initialize_cpu_trainers(10, 19, 0, 9, self.grid)
         self.grid[i_cpu][j_cpu].is_trainer_on_tile = True
-        self.grid[i_cpu][j_cpu].trainer = CPU_Trainer('Tina', 'Female', 'Plain, Simple', 'Just hangin around', '\T/', random.choice(pokemon_db.starter_list))
+        self.grid[i_cpu][j_cpu].trainer = CPU_Trainer('Tina', 'Female', 'Plain, Simple', 'Just hangin around', '\T/', copy.deepcopy(random.choice(pokemon_db.starter_list)))
         self.grid[i_cpu][j_cpu].trainer.see_my_pokemon()
         self.grid[i_cpu][j_cpu].trainer.print_trainer_details()
 
         i_cpu, j_cpu = functions.initialize_cpu_trainers(10, 19, 0, 9, self.grid)
         self.grid[i_cpu][j_cpu].is_trainer_on_tile = True
-        self.grid[i_cpu][j_cpu].trainer = CPU_Trainer('Glind', 'Male', 'Bro, Figher', 'I lift weights all day long!', '\T/', random.choice(pokemon_db.starter_list))
+        self.grid[i_cpu][j_cpu].trainer = CPU_Trainer('Glind', 'Male', 'Bro, Figher', 'I lift weights all day long!', '\T/', copy.deepcopy(random.choice(pokemon_db.starter_list)))
         self.grid[i_cpu][j_cpu].trainer.see_my_pokemon()
         self.grid[i_cpu][j_cpu].trainer.print_trainer_details()
         
@@ -165,14 +167,14 @@ class Grid:
         #place  a fewrandom common trainer -> win a water pokemon
         i_cpu, j_cpu = functions.initialize_cpu_trainers(10, 28, 10, 18, self.grid)
         self.grid[i_cpu][j_cpu].is_trainer_on_tile = True
-        self.grid[i_cpu][j_cpu].trainer = CPU_Trainer('Lilly', 'Female', 'Kind, Quiet, Brave', 'Super fast swimmer', '\T/', random.choice(pokemon_db.water_list))
+        self.grid[i_cpu][j_cpu].trainer = CPU_Trainer('Lilly', 'Female', 'Kind, Quiet, Brave', 'Super fast swimmer', '\T/', copy.deepcopy(random.choice(pokemon_db.water_list)))
         self.grid[i_cpu][j_cpu].trainer.see_my_pokemon()
         self.grid[i_cpu][j_cpu].trainer.print_trainer_details()
 
         #place  a fewrandom common trainer -> win a water pokemon
         i_cpu, j_cpu = functions.initialize_cpu_trainers(10, 28, 10, 18, self.grid)
         self.grid[i_cpu][j_cpu].is_trainer_on_tile = True
-        self.grid[i_cpu][j_cpu].trainer = CPU_Trainer('Philip', 'Male', 'Princely, Dashing', 'I once kissed a sleeping princess and she woke up laughing...', '\T/', random.choice(pokemon_db.water_list))
+        self.grid[i_cpu][j_cpu].trainer = CPU_Trainer('Philip', 'Male', 'Princely, Dashing', 'I once kissed a sleeping princess and she woke up laughing...', '\T/', copy.deepcopy(random.choice(pokemon_db.water_list)))
         self.grid[i_cpu][j_cpu].trainer.see_my_pokemon()
         self.grid[i_cpu][j_cpu].trainer.print_trainer_details()
 
@@ -184,12 +186,12 @@ class Grid:
         #place  a fewrandom common trainer -> win a fire pokemon
         i_cpu, j_cpu = functions.initialize_cpu_trainers(20, 29, 0, 9, self.grid)
         self.grid[i_cpu][j_cpu].is_trainer_on_tile = True
-        self.grid[i_cpu][j_cpu].trainer = CPU_Trainer('Henry', 'Male', 'Cloud9', 'I am not sure where I am.', '\T/', random.choice(pokemon_db.fire_list))
+        self.grid[i_cpu][j_cpu].trainer = CPU_Trainer('Henry', 'Male', 'Cloud9', 'I am not sure where I am.', '\T/', copy.deepcopy(random.choice(pokemon_db.fire_list)))
         self.grid[i_cpu][j_cpu].trainer.see_my_pokemon()
         self.grid[i_cpu][j_cpu].trainer.print_trainer_details()
         i_cpu, j_cpu = functions.initialize_cpu_trainers(20, 29, 0, 9, self.grid)
         self.grid[i_cpu][j_cpu].is_trainer_on_tile = True
-        self.grid[i_cpu][j_cpu].trainer = CPU_Trainer('Faith', 'Female', 'Magic, Firey, Blazy', 'Haha, no way you can beat me', '\T/', random.choice(pokemon_db.fire_list))
+        self.grid[i_cpu][j_cpu].trainer = CPU_Trainer('Faith', 'Female', 'Magic, Firey, Blazy', 'Haha, no way you can beat me', '\T/', copy.deepcopy(random.choice(pokemon_db.fire_list)))
         self.grid[i_cpu][j_cpu].trainer.see_my_pokemon()
         self.grid[i_cpu][j_cpu].trainer.print_trainer_details()
 
@@ -211,11 +213,11 @@ class Grid:
         self.grid[i_cpu][j_cpu].trainer.see_my_pokemon()
         self.grid[i_cpu][j_cpu].trainer.print_trainer_details()
 
-        #place 6 hearts randomly throughout the map
-        for i in range(6):
+        #place 8 hearts randomly throughout the map
+        for i in range(8):
             i_cpu, j_cpu = functions.initialize_cpu_trainers(1, 29, 1, 29, self.grid)
             self.grid[i_cpu][j_cpu].is_object_on_tile = True
-            self.grid[i_cpu][j_cpu].object = heart
+            self.grid[i_cpu][j_cpu].object = copy.deepcopy(heart) 
 
 
     def print_grid(self):
@@ -247,6 +249,10 @@ class Grid:
         self.grid[y][x].is_object_on_tile = False
         self.grid[y][x].object = None
     
+    def remove_trainer(self, x, y):
+        self.grid[y][x].is_trainer_on_tile = False
+        self.grid[y][x].trainer = None
+    
     def input(self):
         while True:
             questions = [
@@ -272,6 +278,7 @@ class Grid:
                         self.my_player.see_my_pokemon()
                     if menu_answer['menu_choice'] == 'Exit Menu':
                         run = False
+                        self.print_grid()
             
             #interact with tile
             if answers['cmd'] == ' ':
@@ -284,8 +291,25 @@ class Grid:
                 if tile.is_trainer_on_tile:
                     if isinstance(tile.trainer, CPU_Trainer):
                         print(f"Time to Battle!! You are Battling {tile.trainer.print_trainer_details()}.\n At the end of the battle you will win ${tile.trainer.money_to_win} and this Pokemon: \n {tile.trainer.pokemon_to_win.pokemon_display} Pokemon: {tile.trainer.pokemon_to_win.name} Nature: {tile.trainer.pokemon_to_win.nature}\n")
-                        functions.battle(self.my_player, tile.trainer)
+                        end = functions.battle(self.my_player, tile.trainer)
+                        if end == 'WON':
+                            self.remove_trainer(self.my_player.location_x, self.my_player.location_y)
+                            
+                            nature = []
+                            for pokemon in self.my_player.pokemon_list:
+                                nature.append(pokemon.nature)
+                            if np.unique(nature).size >= 4:
+                                print('You have collected Pokemon of 4 different Natures! You have won the entire Game!!\n Here is all the Pokemon you have collected on your journey!\n')
+                                print(f"{self.my_player.my_pokemon()}")
+                                input('Press Enter to exit and quit! :) ')
+                                break
+
+                        if end == 'LOST':
+                            print('Good Game hope you try again!! See you soon!')
+                            break
+
                         self.print_grid()
+                        
             #move up
             if answers['cmd'] == 'w':
                 self.remove_player(self.my_player.location_x, self.my_player.location_y)

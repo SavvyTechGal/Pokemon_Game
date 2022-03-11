@@ -2,3 +2,4 @@ climage
 colored
 inquirer
 emoji
+numpy

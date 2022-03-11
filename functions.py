@@ -6,6 +6,7 @@ from inquirer.themes import GreenPassion
 from Player import Player
 import pokemon_db
 import random
+import copy
 
 
 def new_game_setup():
@@ -54,8 +55,8 @@ def battle(my_player: Player, trainer_opponent: CPU_Trainer):
         if pokemon.name == my_pokemon:
             my_pokemon = pokemon
             break
-    print(f"You have chosen {my_pokemon.name} to go into battle!\n {my_pokemon.pokemon_display} Nature: {my_pokemon.nature}, Health: {my_pokemon.health}")
-    print(f"You will be battling {trainer_pokemon.name}\n {trainer_pokemon.pokemon_display} Nature: {trainer_pokemon.nature}, Health: {trainer_pokemon.health}")
+    print(f"You have chosen {my_pokemon.name} to go into battle!\n Nature: {my_pokemon.nature}, Health: {my_pokemon.health}\n {my_pokemon.pokemon_display}")
+    print(f"You will be battling {trainer_pokemon.name} Nature: {trainer_pokemon.nature}, Health: {trainer_pokemon.health}\n {trainer_pokemon.pokemon_display}")
 
     battle = True
     while battle:
@@ -82,24 +83,51 @@ def battle(my_player: Player, trainer_opponent: CPU_Trainer):
                     my_attack = attack
                     break
 
-            print(f"Attacking with {my_attack.name}, Strength: {my_attack.strength}")
-            #
+            print(f"Attacking with {my_attack.name}, Strength: {my_attack.strength}, Opponent {trainer_pokemon.name} has lost {my_attack.strength} health!")
+            #Decrease Trainer Pokemon Health
             trainer_pokemon.health -= my_attack.strength
+            #Check if Trainer Pokemon Health is <= 0
             if (trainer_pokemon.health <= 0):
-                print('You Won!')
-                print(f"You have recieved {trainer_pokemon.name}, Nature: {trainer_pokemon.nature}!\n{trainer_pokemon.pokemon_display}")
-                my_player.pokemon_list.append(trainer_pokemon)
-                trainer_opponent.pokemon_list.remove(trainer_pokemon)
-                battle = False
-                return
+                no_available_pokemon = True #flag for if all pokemon have been defeated
+                #Trainer trying to find another pokemon to fight with
+                for pokemon in trainer_opponent.pokemon_list:
+                    if pokemon.health > 0:
+                        print(f"{trainer_pokemon.name} has lost all its health!\n {trainer_opponent.name} switches pokemon to {pokemon.name} Nature: {pokemon.nature}, Health: {pokemon.health}\n {pokemon.pokemon_display}")
+                        trainer_pokemon = pokemon
+                        no_available_pokemon = False #found a pokemon with > 0 health
+                        break
+                #You win if all of the Trainer's Pokemon have <= 0 health
+                if no_available_pokemon:
+                    print('You Won the Battle!')
+                    print(f"You have recieved ${trainer_opponent.money_to_win} and Pokemon {trainer_opponent.pokemon_to_win.name}, Nature: {trainer_opponent.pokemon_to_win.nature}!\n{trainer_opponent.pokemon_to_win.pokemon_display}")
+                    my_player.pokemon_list.append(copy.deepcopy(trainer_opponent.pokemon_to_win))
+                    my_player.money += trainer_opponent.money_to_win
+                    trainer_opponent.pokemon_list.remove(trainer_opponent.pokemon_to_win)
+                    battle = False
+                    input("Press Enter to return to the Map!")
+                    return "WON"
+            #Trainer Pokemon attacks your Pokemon
             trainer_attack = random.choice(trainer_pokemon.attacks)
             print(f"Trainer Attacked using {trainer_attack.name}. {my_pokemon.name} has lost {trainer_attack.strength} health")
+
+            #Decrement health
             my_pokemon.health -= trainer_attack.strength
-            #have to change this to check all pokemon in inventory 
+    
             if (my_pokemon.health <= 0):
-                print('You Lost!')
-                battle = False
-                return
+                no_available_pokemon = True #flag for if all pokemon have been defeated
+                #Checking if all pokemon 
+                for pokemon in my_player.pokemon_list:
+                    if pokemon.health > 0:
+                        print(f"{my_pokemon.name} has lost all its health! {my_pokemon.name} Choose a new Pokemon!")
+                        no_available_pokemon = False #found a pokemon with > 0 health
+                        break
+
+                #You win if all of the Trainer's Pokemon have <= 0 health
+                if no_available_pokemon:
+                    print('You Lost Game!!')
+                    battle = False
+                    input("Press Enter to end the game!")
+                    return "LOST"
 
         #Change Pokemon
         if answers2["Battle"] == 'CHANGE POKEMON':
@@ -134,8 +162,9 @@ def battle(my_player: Player, trainer_opponent: CPU_Trainer):
             answers5 = inquirer.prompt(heal, theme=GreenPassion()) 
             if answers5['item'] == 'yes':
                 if my_item.name == 'Heart':
-                    my_pokemon.health += 25
-                    print(f"{my_pokemon.name} has increased health by 25!")
+                    my_pokemon.health += 50
+                    print(f"{my_pokemon.name} has increased health by 50!")
+                    my_player.bag.remove(my_item) #remove heart from bag
                 else:
                     print('This item had no effect!')
             else:

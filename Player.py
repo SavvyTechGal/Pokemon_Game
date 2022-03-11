@@ -17,21 +17,14 @@ class Player:
         print()
         print("My Bag")
         for item in self.bag:
-            print(item.name, end='')
+            print(f"{item.name} \n")
         print()
-
-    # def see_my_pokemon(self):
-    #     print()
-    #     print("My Pokemon")
-    #     for pokemon in self.pokemon_list:
-    #         print(pokemon, end='')
-    #     print()
 
     def see_my_pokemon(self):
         print()
         print(f"{self.name}'s Pokemon")
         for pokemon in self.pokemon_list:
-            print(f"Pokemon: {pokemon.name} Nature: {pokemon.nature}")
+            print(f"Pokemon: {pokemon.name} Nature: {pokemon.nature} Health: {pokemon.health}")
             print(pokemon.pokemon_display) 
         print()
     
