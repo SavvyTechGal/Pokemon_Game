@@ -15,7 +15,7 @@ def new_game_setup():
     inquirer.Text("name", message="What is your name?"),
     inquirer.List("gender", message="Gender", choices=["Girl", "Boy", "Non-Binary"], default="Girl"),
     inquirer.Checkbox(
-        "nature", message="Describe your nature", choices=["Sassy", "Kind", "Brave", "Loyal", "Brilliant", "Romantic", "Hot-Headed", "Timid", "Quiet", "Loud", "Carefree", "Whimsical", "Rude"]
+        "nature", message="Describe your nature (Press space bar to select multiple. Enter to submit", choices=["Sassy", "Kind", "Brave", "Loyal", "Brilliant", "Romantic", "Hot-Headed", "Timid", "Quiet", "Loud", "Carefree", "Whimsical", "Rude"]
     ),
     inquirer.List("first_pokemon", message="Select your first Pokemon!", choices=["Torchic: Fire", "Fennekin: Fire", "Squirtle: Water", "Bulbasaur: Nature"], default="Bulbasaur: Nature"),
     ]

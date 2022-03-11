@@ -17,7 +17,8 @@ class Player:
         print()
         print("My Bag")
         for item in self.bag:
-            print(f"{item.name} \n")
+            print(f"Name: {item.name} | Capability {item.capability}\n")
+            print(f"{item.display}\n")
         print()
 
     def see_my_pokemon(self):

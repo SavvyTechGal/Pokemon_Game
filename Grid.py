@@ -46,25 +46,25 @@ class Grid:
          
         #init required map items
         #found in forest
-        mountain_boots = Item("Mysterious Mountatin Boots", climage.convert('item_images/mysterious_mountain_boots3.png', is_unicode=True, width=3).rstrip(), "Allows you to enter the Volcanic Mountains!")
+        mountain_boots = Item("Mysterious Mountatin Boots", climage.convert('item_images/mysterious_mountain_boots3.png', is_unicode=True, width=3).rstrip(), "Lava Proof! Allows you to enter Volcanic Mountain!", climage.convert('item_images/mysterious_mountain_boots3.png', is_unicode=True, width=30))
         
         #found in mountains
-        snow_coat = Item("Fluffy Snow Coat", climage.convert('item_images/fluffy_snow_coat.png', is_unicode=True, width=3).rstrip(), "Keeps you warm in snow and icy regions, No frost bite!")
+        snow_coat = Item("Fluffy Snow Coat", climage.convert('item_images/fluffy_snow_coat.png', is_unicode=True, width=3).rstrip(), "Keeps you warm in snow and icy regions, No frost bite. You can now enter Snow Point Ruins!", climage.convert('item_images/fluffy_snow_coat.png', is_unicode=True, width=30))
 
         #found in ice/snow area
-        flippers = Item("Magic Flippers", climage.convert('item_images/magic_flippers.png', is_unicode=True, width=3).rstrip(), "Allows you to swim!")
+        flippers = Item("Magic Flippers", climage.convert('item_images/magic_flippers.png', is_unicode=True, width=3).rstrip(), "You can now swim! I wonder if Lake Hylia is warm...", climage.convert('item_images/magic_flippers.png', is_unicode=True, width=30))
         
         #island in the middle of the lake
-        desert_cloak = Item("Desert Cloak", climage.convert('item_images/desert_cloak.png', is_unicode=True, width=3).rstrip(), "Heat-Resistant Desert Cloak, Allows you to travel the desert at a comfortable temperature!")
+        desert_cloak = Item("Stillsuit", climage.convert('item_images/desert_cloak.png', is_unicode=True, width=3).rstrip(), "Stillsuit, Allows you to travel the desert without loosing water and keeps your body temp stable! You can now enter the Amon Desert Ruins", climage.convert('item_images/desert_cloak.png', is_unicode=True, width=30))
         
         #hearts -> heals a fallen pokemon to full health
-        heart = Item("Heart", ' \u2764\ufe0f ', 'Heals a pokemon and increases Health by +50. Can only be used in battle. One time use only.')
+        heart = Item("Heart", ' \u2764\ufe0f ', 'Heals a pokemon and increases Health by +50. Can only be used in battle. One time use only.', climage.convert('item_images/heart.png', is_unicode=True, width=30))
         
 
         #required terrain tiles
         grass_terrain = Terrain("grass", bg('#32a852'), climage.convert('terrain_images/grass.png', is_unicode=True, width=3).rstrip(), False)
         forest_terrain = Terrain("Viridian Forest", bg('#32a852'), climage.convert('terrain_images/tree.png', is_unicode=True, width=3).rstrip(), False)
-        mountain_terrain = Terrain("Death Mountain", bg('#CF1020'), climage.convert('terrain_images/mountain.png', is_unicode=True, width=3).rstrip(), True, mountain_boots)
+        mountain_terrain = Terrain("Volcanic Mountain", bg('#CF1020'), climage.convert('terrain_images/mountain.png', is_unicode=True, width=3).rstrip(), True, mountain_boots)
         snow_terrain = Terrain("Snow Point Ruins", bg('#32a852'), climage.convert('terrain_images/snow.png', is_unicode=True, width=3).rstrip(), True, snow_coat)
         water_terrain = Terrain("Lake Hylia", bg('#32a852'), climage.convert('terrain_images/lake.png', is_unicode=True, width=3).rstrip(), True, flippers)
         desert_terrain = Terrain("Amon Desert Ruins", bg('#32a852'), climage.convert('terrain_images/sand.png', is_unicode=True, width=3).rstrip(), True, desert_cloak)
@@ -96,8 +96,7 @@ class Grid:
         i_cpu, j_cpu = functions.initialize_cpu_trainers(0, 8, 20, 28, self.grid)
         self.grid[i_cpu][j_cpu].is_trainer_on_tile = True
         self.grid[i_cpu][j_cpu].trainer = CPU_Trainer('Fern', 'Male', 'Kind, Still', 'One with the forest!', '\T/', random.choice(pokemon_db.wind_list))
-        self.grid[i_cpu][j_cpu].trainer.see_my_pokemon()
-        self.grid[i_cpu][j_cpu].trainer.print_trainer_details()
+
         #mountain grid
         i_place = random.randint(0, 9)
         j_place = random.randint(0, 9)
@@ -112,8 +111,7 @@ class Grid:
         i_cpu, j_cpu = functions.initialize_cpu_trainers(0, 9, 0, 9, self.grid)
         self.grid[i_cpu][j_cpu].is_trainer_on_tile = True
         self.grid[i_cpu][j_cpu].trainer = CPU_Trainer('Ruth', 'Female', 'Brave, Tough', 'Can move Mountains if I try!', '\T/', copy.deepcopy(random.choice(pokemon_db.earth_list)))
-        self.grid[i_cpu][j_cpu].trainer.see_my_pokemon()
-        self.grid[i_cpu][j_cpu].trainer.print_trainer_details()
+
         
         #town grid
         for i in range(10, 20):
@@ -123,14 +121,12 @@ class Grid:
         i_cpu, j_cpu = functions.initialize_cpu_trainers(10, 19, 0, 9, self.grid)
         self.grid[i_cpu][j_cpu].is_trainer_on_tile = True
         self.grid[i_cpu][j_cpu].trainer = CPU_Trainer('Tina', 'Female', 'Plain, Simple', 'Just hangin around', '\T/', copy.deepcopy(random.choice(pokemon_db.starter_list)))
-        self.grid[i_cpu][j_cpu].trainer.see_my_pokemon()
-        self.grid[i_cpu][j_cpu].trainer.print_trainer_details()
+
 
         i_cpu, j_cpu = functions.initialize_cpu_trainers(10, 19, 0, 9, self.grid)
         self.grid[i_cpu][j_cpu].is_trainer_on_tile = True
         self.grid[i_cpu][j_cpu].trainer = CPU_Trainer('Glind', 'Male', 'Bro, Figher', 'I lift weights all day long!', '\T/', copy.deepcopy(random.choice(pokemon_db.starter_list)))
-        self.grid[i_cpu][j_cpu].trainer.see_my_pokemon()
-        self.grid[i_cpu][j_cpu].trainer.print_trainer_details()
+
         
         #Snow Point Ruins
         i_place = random.randint(10, 19)
@@ -146,8 +142,6 @@ class Grid:
         i_cpu, j_cpu = functions.initialize_cpu_trainers(10, 18, 20, 28, self.grid)
         self.grid[i_cpu][j_cpu].is_trainer_on_tile = True
         self.grid[i_cpu][j_cpu].trainer = CPU_Trainer('Lorea', 'Female', 'I love dancing!', '', '\T/')
-        self.grid[i_cpu][j_cpu].trainer.see_my_pokemon()
-        self.grid[i_cpu][j_cpu].trainer.print_trainer_details()
 
         #water grid        
         for i in range(10, 30):
@@ -168,15 +162,13 @@ class Grid:
         i_cpu, j_cpu = functions.initialize_cpu_trainers(10, 28, 10, 18, self.grid)
         self.grid[i_cpu][j_cpu].is_trainer_on_tile = True
         self.grid[i_cpu][j_cpu].trainer = CPU_Trainer('Lilly', 'Female', 'Kind, Quiet, Brave', 'Super fast swimmer', '\T/', copy.deepcopy(random.choice(pokemon_db.water_list)))
-        self.grid[i_cpu][j_cpu].trainer.see_my_pokemon()
-        self.grid[i_cpu][j_cpu].trainer.print_trainer_details()
+
 
         #place  a fewrandom common trainer -> win a water pokemon
         i_cpu, j_cpu = functions.initialize_cpu_trainers(10, 28, 10, 18, self.grid)
         self.grid[i_cpu][j_cpu].is_trainer_on_tile = True
         self.grid[i_cpu][j_cpu].trainer = CPU_Trainer('Philip', 'Male', 'Princely, Dashing', 'I once kissed a sleeping princess and she woke up laughing...', '\T/', copy.deepcopy(random.choice(pokemon_db.water_list)))
-        self.grid[i_cpu][j_cpu].trainer.see_my_pokemon()
-        self.grid[i_cpu][j_cpu].trainer.print_trainer_details()
+
 
         #Amon Desert Ruins
         for i in range(20, 30):
@@ -187,13 +179,11 @@ class Grid:
         i_cpu, j_cpu = functions.initialize_cpu_trainers(20, 29, 0, 9, self.grid)
         self.grid[i_cpu][j_cpu].is_trainer_on_tile = True
         self.grid[i_cpu][j_cpu].trainer = CPU_Trainer('Henry', 'Male', 'Cloud9', 'I am not sure where I am.', '\T/', copy.deepcopy(random.choice(pokemon_db.fire_list)))
-        self.grid[i_cpu][j_cpu].trainer.see_my_pokemon()
-        self.grid[i_cpu][j_cpu].trainer.print_trainer_details()
+
         i_cpu, j_cpu = functions.initialize_cpu_trainers(20, 29, 0, 9, self.grid)
         self.grid[i_cpu][j_cpu].is_trainer_on_tile = True
         self.grid[i_cpu][j_cpu].trainer = CPU_Trainer('Faith', 'Female', 'Magic, Firey, Blazy', 'Haha, no way you can beat me', '\T/', copy.deepcopy(random.choice(pokemon_db.fire_list)))
-        self.grid[i_cpu][j_cpu].trainer.see_my_pokemon()
-        self.grid[i_cpu][j_cpu].trainer.print_trainer_details()
+
 
         #Cherry Blossom Forest
         for i in range(20, 30):
@@ -204,14 +194,12 @@ class Grid:
         i_cpu, j_cpu = functions.initialize_cpu_trainers(20, 29, 20, 29, self.grid)
         self.grid[i_cpu][j_cpu].is_trainer_on_tile = True
         self.grid[i_cpu][j_cpu].trainer = CPU_Trainer('Fiddle', 'Female', 'Lets catch em all!', '', '\T/')
-        self.grid[i_cpu][j_cpu].trainer.see_my_pokemon()
-        self.grid[i_cpu][j_cpu].trainer.print_trainer_details()
+
         
         i_cpu, j_cpu = functions.initialize_cpu_trainers(20, 29, 20, 29, self.grid)
         self.grid[i_cpu][j_cpu].is_trainer_on_tile = True
         self.grid[i_cpu][j_cpu].trainer = CPU_Trainer('Sid', 'Male', 'Got caught with my hand in a cookie jar...', '', '\T/')
-        self.grid[i_cpu][j_cpu].trainer.see_my_pokemon()
-        self.grid[i_cpu][j_cpu].trainer.print_trainer_details()
+
 
         #place 8 hearts randomly throughout the map
         for i in range(8):
@@ -219,7 +207,7 @@ class Grid:
             self.grid[i_cpu][j_cpu].is_object_on_tile = True
             self.grid[i_cpu][j_cpu].object = copy.deepcopy(heart) 
 
-
+    #Prints the grid when called
     def print_grid(self):
         for row in self.grid:
             for col in row:
@@ -252,6 +240,17 @@ class Grid:
     def remove_trainer(self, x, y):
         self.grid[y][x].is_trainer_on_tile = False
         self.grid[y][x].trainer = None
+
+    #used to check if Player can move to that area of the map
+    def can_move(self, x, y) -> bool:
+        has_item = True
+        if self.grid[y][x].terrain.needs_item_to_move:
+            has_item = False
+            for item in self.my_player.bag:
+                if item.name == self.grid[y][x].terrain.required_item.name:
+                    has_item = True
+                    break
+        return has_item
     
     def input(self):
         while True:
@@ -288,7 +287,7 @@ class Grid:
                         print(f"You have picked up {tile.object.name}.\n Capability {tile.object.capability}\n The item has been added to your bag!\n")
                         self.my_player.bag.append(tile.object)
                         self.remove_object(self.my_player.location_x, self.my_player.location_y)
-                if tile.is_trainer_on_tile:
+                elif tile.is_trainer_on_tile:
                     if isinstance(tile.trainer, CPU_Trainer):
                         print(f"Time to Battle!! You are Battling {tile.trainer.print_trainer_details()}.\n At the end of the battle you will win ${tile.trainer.money_to_win} and this Pokemon: \n {tile.trainer.pokemon_to_win.pokemon_display} Pokemon: {tile.trainer.pokemon_to_win.name} Nature: {tile.trainer.pokemon_to_win.nature}\n")
                         end = functions.battle(self.my_player, tile.trainer)
@@ -309,34 +308,59 @@ class Grid:
                             break
 
                         self.print_grid()
+                else:
+                    print("There's nothing on this tile to interact with!")
                         
             #move up
             if answers['cmd'] == 'w':
-                self.remove_player(self.my_player.location_x, self.my_player.location_y)
-                self.my_player.location_y -= 1
-                self.place_player(self.my_player.location_x, self.my_player.location_y)
-                self.print_grid()
-
+                if self.can_move(self.my_player.location_x, self.my_player.location_y-1):
+                    self.remove_player(self.my_player.location_x, self.my_player.location_y)
+                    self.my_player.location_y -= 1
+                    self.place_player(self.my_player.location_x, self.my_player.location_y)
+                    self.print_grid()
+                else:
+                    print(f"You cannot enter {self.grid[self.my_player.location_y-1][self.my_player.location_x].terrain.type} without the secret item! Find it and you may proceed!")
+                    input("Press Enter to Continue")
+                    self.print_grid()
             #move left    
             if answers['cmd'] == 'a':
-                self.remove_player(self.my_player.location_x, self.my_player.location_y)
-                self.my_player.location_x -= 1
-                self.place_player(self.my_player.location_x, self.my_player.location_y)
-                self.print_grid()
+                if self.my_player.location_x-1 == -1:
+                    print('You will fall off the edge of the earth if you walk that way... Who knows what is down there! Best to turn back.')
+                elif self.can_move(self.my_player.location_x-1, self.my_player.location_y):
+                    self.remove_player(self.my_player.location_x, self.my_player.location_y)
+                    self.my_player.location_x -= 1
+                    self.place_player(self.my_player.location_x, self.my_player.location_y)
+                    self.print_grid()
+                else:
+                    print(f"You cannot enter {self.grid[self.my_player.location_y][self.my_player.location_x-1].terrain.type} without the secret item! Find it and you may proceed!")
+                    input("Press Enter to Continue")
+                    self.print_grid()
 
             #move down
             if answers['cmd'] == 's':
-                self.remove_player(self.my_player.location_x, self.my_player.location_y)
-                self.my_player.location_y += 1
-                self.place_player(self.my_player.location_x, self.my_player.location_y)
-                self.print_grid()
+                if self.can_move(self.my_player.location_x, self.my_player.location_y+1):
+                    self.remove_player(self.my_player.location_x, self.my_player.location_y)
+                    self.my_player.location_y += 1
+                    self.place_player(self.my_player.location_x, self.my_player.location_y)
+                    self.print_grid()
+                else:
+                    print(f"You cannot enter {self.grid[self.my_player.location_y+1][self.my_player.location_x].terrain.type} without the secret item! Find it and you may proceed!")
+                    input("Press Enter to Continue")
+                    self.print_grid()
 
             #move right
             if answers['cmd'] == 'd':
-                self.remove_player(self.my_player.location_x, self.my_player.location_y)
-                self.my_player.location_x += 1
-                self.place_player(self.my_player.location_x, self.my_player.location_y)
-                self.print_grid()
+                if self.my_player.location_x+1 == 30:
+                    print('You will fall off the edge of the earth if you walk that way... Who knows what is down there! Best to turn back.')
+                elif self.can_move(self.my_player.location_x+1, self.my_player.location_y):
+                    self.remove_player(self.my_player.location_x, self.my_player.location_y)
+                    self.my_player.location_x += 1
+                    self.place_player(self.my_player.location_x, self.my_player.location_y)
+                    self.print_grid()
+                else:
+                    print(f"You cannot enter {self.grid[self.my_player.location_y][self.my_player.location_x+1].terrain.type} without the secret item! Find it and you may proceed!")
+                    input("Press Enter to Continue")
+                    self.print_grid()
             
             #quit game
             if answers['cmd'] == 'q':
