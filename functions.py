@@ -100,6 +100,7 @@ def battle(my_player: Player, trainer_opponent: CPU_Trainer):
                 if no_available_pokemon:
                     print('You Won the Battle!')
                     print(f"You have recieved ${trainer_opponent.money_to_win} and Pokemon {trainer_opponent.pokemon_to_win.name}, Nature: {trainer_opponent.pokemon_to_win.nature}!\n{trainer_opponent.pokemon_to_win.pokemon_display}")
+                    trainer_opponent.pokemon_to_win.health = trainer_opponent.pokemon_to_win.start_health
                     my_player.pokemon_list.append(copy.deepcopy(trainer_opponent.pokemon_to_win))
                     my_player.money += trainer_opponent.money_to_win
                     trainer_opponent.pokemon_list.remove(trainer_opponent.pokemon_to_win)
@@ -122,7 +123,7 @@ def battle(my_player: Player, trainer_opponent: CPU_Trainer):
                         no_available_pokemon = False #found a pokemon with > 0 health
                         break
 
-                #You win if all of the Trainer's Pokemon have <= 0 health
+                #You loose if all of your Pokemon have <= 0 health
                 if no_available_pokemon:
                     print('You Lost Game!!')
                     battle = False

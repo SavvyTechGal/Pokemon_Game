@@ -22,3 +22,4 @@ class Pokemon:
         self.resistant_to_attack_of_type = resistant_to_attack_of_type
         self.weak_to_attack_of_type = weak_to_attack_of_type
         self.health = health
+        self.start_health = health
