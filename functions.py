@@ -1,3 +1,6 @@
+#Savana Hughes 23798928
+#March 10th, 2022
+#Advanced Python Pokemon Game
 from tracemalloc import start
 from turtle import st
 from CPU_Trainer import CPU_Trainer

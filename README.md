@@ -1,4 +1,8 @@
 # README
+#Savana Hughes 23798928
+#March 10th, 2022
+#Advanced Python Pokemon Game
+
 Notes on Implementations:
 SUMMARY: 
 My Pokemon game is a mix of Zelda (my favorite game series from childhood, I've played almost all) and what I know about Pokemon from friends/research (I can't believe I've never played! I think I'd enjoy it!)

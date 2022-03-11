@@ -1,3 +1,6 @@
+#Savana Hughes 23798928
+#March 10th, 2022
+#Advanced Python Pokemon Game
 class Item:
     def __init__(self, name: str, img, capability: str, display = None):
         self.name = name #name of item

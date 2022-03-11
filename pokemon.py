@@ -1,3 +1,6 @@
+#Savana Hughes 23798928
+#March 10th, 2022
+#Advanced Python Pokemon Game
 class Attack:
     def __init__(self, name: str, attack_type: str, strength: int):
         self.name = name

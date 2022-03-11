@@ -1,3 +1,6 @@
+#Savana Hughes 23798928
+#March 10th, 2022
+#Advanced Python Pokemon Game
 from Item import Item
 from Pokemon import Pokemon
 class Player:
